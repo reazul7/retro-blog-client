@@ -1,6 +1,6 @@
 import React from 'react';
 import Banner from './Banner';
-import Card from './Card';
+import Blog from './Blog';
 import Footer from './Footer';
 import NavBar from './NavBar';
 
@@ -9,7 +9,7 @@ const Home = () => {
         <div>
             <NavBar/>
             <Banner/>
-            <Card/>
+            <Blog/>
             <Footer/>
         </div>
     );

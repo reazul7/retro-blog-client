@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
 
+
 function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -50,7 +51,14 @@ function NavBar() {
                     href="#Reports"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
-                    Reports
+                    {/* Reports */}
+                    {/* dropdown start */}
+                    <select class="bg-gray-800 text-gray-300 hover:bg-gray-700  px-3 py-2 rounded-md text-sm font-medium">
+                      <option>Login</option>
+                      <option>Add Blog</option>
+                      <option>Manage Blog</option>
+                    </select>
+                    {/* dropdown end */}
                   </a>
                 </div>
               </div>
