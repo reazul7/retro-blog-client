@@ -1,63 +1,82 @@
-import React from 'react'
+import React from "react";
 import { useForm } from "react-hook-form";
 
 function AddAdmin() {
-    const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm();
 
-    const onSubmit = (data) => {
-        console.log(data);
-        // fetch("http://localhost:9000/makeAdmin", {
-        //     method: "POST",
-        //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify(data),
-        // })
-        //     .then((res) => res.json())
-        //     .then((data) => {
-        //         data && alert("Admin added successfully");
-        //     });
-    };
-    return (
-        <div className="container-fluid row">
-
-        <div
-            className="col-md-9 p-4 pr-5 me-5 mt-5 container"
-            style={{
-                position: "absolute",
-                right: 0,
-                backgroundColor: "#F4FDFB",
-            }}
-        >
-            <form onSubmit={handleSubmit(onSubmit)} class="row g-2">
-                <div class="col-md-4  me-5">
-                    <label for="inputname" class="form-label">
-                        Admin Name
-                    </label>
-                    <input
-                        name="name"
-                        {...register("name")}
-                        type="text"
-                        class="form-control"
-                        id="name"
-                    />
-                </div>
-
-                <div class="col-md-4">
-                    <label for="inputWight" class="form-label">
-                        Email
-                    </label>
-                    <input
-                        name="email"
-                        {...register("email")}
-                        type="email"
-                        class="form-control"
-                    />
-                </div>
-
-                <input type="submit" class="col-md-4" />
-            </form>
+  const onSubmit = (data) => {
+    console.log(data);
+    // fetch("http://localhost:9000/makeAdmin", {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify(data),
+    // })
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //         data && alert("Admin added successfully");
+    //     });
+  };
+  return (
+    <div>
+        <h1 className="text-center pt-20 pb-12 text-2xl font-bold text-gray-500">Want to make a user an admin by email?</h1>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        action=""
+        class="max-w-sm bg-gray-100 px-3 py-5 rounded shadow-lg my-10 m-auto"
+      >
+        <div class="flex flex-col space-y-3">
+          {/* email field */}
+          <div class="flex items-center bg-white border border-gray-100 rounded px-2">
+            <svg
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              class="h-6 text-gray-500 m-0 mr-1"
+            >
+              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+            </svg>
+            <input
+              name="email"
+              {...register("email")}
+              type="email"
+              placeholder="Email"
+              class="w-full py-2 px-1 placeholder-indigo-400 outline-none placeholder-opacity-50"
+              autocomplete="off"
+            />
+          </div>
+          {/* password field */}
+          <div class="flex items-center bg-white border border-gray-100 rounded px-2">
+            <svg
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              class="h-6 text-gray-500 m-0 mr-1"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"
+              />
+            </svg>
+            <input
+              name="password"
+              {...register("password")}
+              type="password"
+              placeholder="Password"
+              class="w-full py-2 px-1 placeholder-indigo-400 outline-none placeholder-opacity-50"
+              autocomplete="off"
+            />
+          </div>
+          <button
+            type="submit"
+            class="text-white bg-indigo-500 px-4 py-2 rounded"
+          >
+            Make as Admin
+          </button>
         </div>
+      </form>
     </div>
-    )
+  );
 }
 
 export default AddAdmin;

@@ -157,7 +157,7 @@ function Login() {
                 {/* <div class="mx-auto">
                     <img src="http://themesitem.com/demos/html/jobortunity/jobortunity/images/home-page-logo.png"class="mx-auto"alt="" /></div> */}
 
-            <div class="row g-3">
+            <div class="row g-3 ">
                 <Form onSubmit={handleSubmit}>
                     <h1 class="mt-5">
                         {newUser ? <h5>create an account</h5> : <h5>Log In</h5>}
