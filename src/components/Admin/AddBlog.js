@@ -5,7 +5,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const AddBlog = () => {
-    const { register, handleSubmit,} = useForm();
+    const { register, handleSubmit,formState: { errors }} = useForm();
     const [imageURL, setImageURL] = useState(null);
     const [value, setValue] = useState('');
 
@@ -82,6 +82,7 @@ const onSubmit = data => {
                         // id="exampleFormControlInput1"
                         placeholder="Title"
                     />
+                     {errors.title && <span>This field is required</span>}
                 </div>
                 <br />
                 <div class="mb-3 col-md-9  mx-auto">
@@ -111,6 +112,7 @@ const onSubmit = data => {
                         // id="exampleFormControlInput1"
                         placeholder="Author"
                     />
+                    {errors.Author && <span>This field is required</span>}
                 </div>
                 <br />
                 <div class="row " style={{marginLeft:"20%"}}>
@@ -137,11 +139,13 @@ const onSubmit = data => {
                         id="exampleFormControlInput1"
                         // defaultValue={loggedInUser.email}
                     />
+                    {errors.Author && <span>This field is required</span>}
                 </div>
                </div>
                 <br />
                 <div class="mx-auto" style={{width: "200px"}}>
-                    <input class="mx-auto" type="submit" />
+                    {/* <input class="mx-auto" type="submit" /> */}
+                    <button class="border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline" type="submit">Save and Publish </button>
                 </div>
             </form>
             </div>
