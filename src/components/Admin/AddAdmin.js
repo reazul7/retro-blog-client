@@ -1,23 +1,24 @@
-import React from "react";
+import React from 'react'
 import { useForm } from "react-hook-form";
 
 function AddAdmin() {
-  const { register, handleSubmit } = useForm();
+    const { register, handleSubmit,formState: { errors }  } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    // fetch("http://localhost:9000/makeAdmin", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify(data),
-    // })
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //         data && alert("Admin added successfully");
-    //     });
-  };
-  return (
-    <div>
+    const onSubmit = (data, e) => {
+        console.log(data);
+        fetch("http://localhost:5000/makeAdmin", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+              data && alert("Admin added successfully");
+              e.target.reset()
+            });
+    };
+    return (
+        <div>
         <h1 className="text-center pt-20 pb-12 text-2xl font-bold text-gray-500">Want to make a user an admin by email?</h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -37,12 +38,13 @@ function AddAdmin() {
             </svg>
             <input
               name="email"
-              {...register("email")}
+              {...register("email",{ required: true })}
               type="email"
               placeholder="Email"
               class="w-full py-2 px-1 placeholder-indigo-400 outline-none placeholder-opacity-50"
               autocomplete="off"
-            />
+              />
+               {errors.email && <span>This field is required</span>}
           </div>
           {/* password field */}
           <div class="flex items-center bg-white border border-gray-100 rounded px-2">
@@ -60,12 +62,14 @@ function AddAdmin() {
             </svg>
             <input
               name="password"
-              {...register("password")}
+              {...register("password",{ required: true })}
               type="password"
               placeholder="Password"
               class="w-full py-2 px-1 placeholder-indigo-400 outline-none placeholder-opacity-50"
               autocomplete="off"
-            />
+              />
+               {errors.password && <span>This field is required</span>}
+
           </div>
           <button
             type="submit"
@@ -76,7 +80,7 @@ function AddAdmin() {
         </div>
       </form>
     </div>
-  );
+    )
 }
 
 export default AddAdmin;
