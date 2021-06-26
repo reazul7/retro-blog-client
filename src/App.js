@@ -13,7 +13,7 @@ import { useState } from 'react';
 import AddAdmin from './components/Admin/AddAdmin';
 import Sidebar from './components/Shared/Sidebar/Sidebar';
 import PrivateRoute from './components/Shared/Login/PrivateRoute';
-import SingleCard from './components/Home/SingleCard';
+import BlogDetails from './components/Home/BlogDetails';
 
 export const UserContext = createContext();
 
@@ -38,8 +38,8 @@ function App() {
           <Route path="/dashboard">
             <Sidebar/>
           </Route>
-          <Route path="/singleBlog">
-            <SingleCard/>
+          <Route path="/blogDetails/:id">
+            <BlogDetails/>
           </Route>
         </Switch>
       </Router>
