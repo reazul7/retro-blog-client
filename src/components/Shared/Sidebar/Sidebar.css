@@ -1,0 +1,20 @@
+.sidebar{
+    /* background-image: linear-gradient(40deg, #19d3ae,#0fcfec); */
+    /* background: linear-gradient( rgba(17,17,17,0.30), rgba(17,17,17,0.30) ),url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmxDqO2oEGyRuj1tqI3QV5v2p5oH-XANOFug&usqp=CAU); */
+    background-color: #517db3;
+    background-size: cover;
+    position: fixed;
+}
+.sidebar li{
+    margin-bottom: 2em;
+}
+.text-brand{
+    /* font-size: 17px; */
+}
+.sidebar li:hover span{
+    display: inline-block;
+    transform: translate(5px);
+}
+.sidebar svg{
+    margin-right: 10px;
+}

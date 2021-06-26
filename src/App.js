@@ -7,15 +7,18 @@ import {
 } from "react-router-dom";
 import Home from './components/Home/Home';
 import AddBlog from './components/Admin/AddBlog';
-import Login from './components/Login/Login';
+import Login from './components/Shared/Login/Login';
 import { createContext } from 'react';
 import { useState } from 'react';
 import AddAdmin from './components/Admin/AddAdmin';
+import Sidebar from './components/Shared/Sidebar/Sidebar';
+import PrivateRoute from './components/Shared/Login/PrivateRoute';
+import SingleCard from './components/Home/SingleCard';
 
 export const UserContext = createContext();
 
 function App() {
-  const [loggedInUser, setLoggedInUser] = useState([]);
+  const [loggedInUser, setLoggedInUser] = useState({});
   return (
     <UserContext.Provider value={[ loggedInUser, setLoggedInUser ]}>
       <Router>
@@ -23,14 +26,20 @@ function App() {
           <Route exact path="/">
             <Home/>
           </Route>
-          <Route path="/addBlog">
+          <PrivateRoute path="/addBlog">
             <AddBlog/>
-          </Route>
+          </PrivateRoute>
           <Route path="/login">
             <Login/>
           </Route>
           <Route path="/addAdmin">
             <AddAdmin/>
+          </Route>
+          <Route path="/dashboard">
+            <Sidebar/>
+          </Route>
+          <Route path="/singleBlog">
+            <SingleCard/>
           </Route>
         </Switch>
       </Router>
