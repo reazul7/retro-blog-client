@@ -19,7 +19,7 @@ const BlogCard = ({blog}) => {
           <span class="text-gray-600 ">26 Jun 2021</span>
         </div>
         </div>
-        <p class="text-justify">{ReactHtmlParser(value.slice(0,200))}...</p>
+        <p class="text-justify">{ value ?  ReactHtmlParser(value.slice(0,200)) : ""}...</p>
         <div className="mt-4">
           <div class="flex items-center justify-between mt-2 mx-6">
             <p class="text-blue-500 text-md -ml-3 " onClick={()=> readBlog(_id)} style={{cursor:"pointer"}}>Continue Reading</p>

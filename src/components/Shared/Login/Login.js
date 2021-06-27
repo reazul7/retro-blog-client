@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import firebase from "firebase/app";
+import firebaseConfig from "./firebase.config";
 import "firebase/auth";
 import { useState } from "react";
+
 import { useHistory, useLocation } from "react-router";
 import { Form, Button } from "react-bootstrap";
-import firebaseConfig from "./firebase.config";
 import { UserContext } from "../../../App";
 
 if (!firebase.apps.length) {
@@ -65,6 +66,7 @@ function Login() {
           // console.log(errorMessage);
           // console.log(user.name);
           updateUserName(user.name);
+
           setLoggedInUser(newUserInfo);
           history.replace(from);
         })
@@ -77,6 +79,21 @@ function Login() {
           console.log(errorMessage);
         });
     }
+
+    // const isAdmin = (email) => {
+    //   return fetch("http://localhost:5000/isAdmin", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ email }),
+    //   })
+    //     .then((res) => res.json())
+    //     .then((data) => data)
+    //     .catch((err) => {
+    //       console.log("check admin fetch url error", err);
+    //     });
+    // };
 
     if (!newUser && user.email && user.password) {
       firebase

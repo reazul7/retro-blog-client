@@ -53,7 +53,7 @@ function NavBar() {
                   Review
                 </a>
                 {isAdmin && (
-                  <Link to="/dashbord">
+                  <Link to="/addBlog">
                     {" "}
                     <a
                       href="#Projects"

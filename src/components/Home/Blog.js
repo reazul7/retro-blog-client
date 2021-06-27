@@ -13,7 +13,7 @@ function Blog() {
 
   return (
     <main class="px-3">
-      <div class="text-4xl sm:text-5xl text-center my-10">What type of food do you like?</div>
+      <div class="text-4xl sm:text-5xl text-center my-10">My Blogs</div>
       <div class="grid md:grid-cols-3 gap-8 m-5 max-w-5xl m-auto">
         {
           blogs.length > 0 && blogs.map((blog) => (<BlogCard blog={blog}></BlogCard>))
