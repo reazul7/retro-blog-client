@@ -6,7 +6,7 @@ function AddAdmin() {
 
     const onSubmit = (data, e) => {
         console.log(data);
-        fetch("http://localhost:5000/makeAdmin", {
+        fetch("https://desolate-savannah-78335.herokuapp.com/makeAdmin", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),

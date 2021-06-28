@@ -6,7 +6,7 @@ import NavBar from './NavBar';
 
 const Home = () => {
     useEffect(() => {
-        fetch('http://localhost:5000/')
+        fetch('https://desolate-savannah-78335.herokuapp.com/')
         .then(data =>{
             console.log(data);
         })

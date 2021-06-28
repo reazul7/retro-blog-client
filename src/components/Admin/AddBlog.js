@@ -35,9 +35,9 @@ const AddBlog = () => {
       date: new Date().toDateString(),
       time: new Date().setHours(24),
     };
-    console.log(eventData);
+    // console.log(eventData);
 
-    fetch("http://localhost:5000/addBlog", {
+    fetch("https://desolate-savannah-78335.herokuapp.com/addBlog", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -46,10 +46,13 @@ const AddBlog = () => {
     })
       .then((response) => response.json())
       .then((res) => {
+        // console.log("response", res);
         if (res) {
           alert("Post publish successful..!");
           e.target.reset();
-        } else alert("Post publish failed!");
+        } else {
+          alert("Post publish failed!");
+        }
       })
       .catch((err) => {
         console.log(err);

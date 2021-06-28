@@ -5,7 +5,7 @@ import BlogCard from "./BlogCard";
 function Blog() {
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/blogs")
+    fetch("https://desolate-savannah-78335.herokuapp.com/blogs")
     .then((res) => res.json())
     .then(data => setBlogs(data))
   }, [setBlogs]);

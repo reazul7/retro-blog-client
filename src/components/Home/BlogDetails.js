@@ -7,7 +7,7 @@ const BlogDetails = () => {
     // console.log(id);
     const [blogDetails, setBlogDetails] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/blogDetails/${id}`)
+        fetch(`https://desolate-savannah-78335.herokuapp.com/blogDetails/${id}`)
         .then(res => res.json())
         .then(data => setBlogDetails(data))
     },[])
