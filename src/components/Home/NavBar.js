@@ -45,19 +45,12 @@ function NavBar() {
                 >
                   Dashboard
                 </Link>
-
-                <a
-                  href="#Team"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Team
-                </a>
-                <a
-                  href="#Team"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                <Link
+                  to="/dashboard"
+                  className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Review
-                </a>
+                </Link>
                 {isAdmin && (
                   <>
                     <Link to="/addBlog">
@@ -153,40 +146,51 @@ function NavBar() {
         {(ref) => (
           <div className="md:hidden" id="mobile-menu">
             <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <a
-                href="#Dashboard"
+              <Link
+                to="/dashboard"
                 className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
               >
                 Dashboard
-              </a>
-
-              <a
-                href="#Team"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+              </Link>
+              <Link
+                to="/dashboard"
+                className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
               >
-                Team
-              </a>
+                Review
+              </Link>
+              {isAdmin && (
+                  <>
+                    <Link to="/addBlog">
+                      {" "}
+                      <button className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">
+                        Add Blog
+                      </button>{" "}
+                    </Link>
+                    <Link to="/addAdmin">
+                      {" "}
+                      <button className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">
+                        Add Admin
+                      </button>{" "}
+                    </Link>
+                  </>
+                )}
 
-              <a
-                href="#Projects"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Projects
-              </a>
-
-              <a
-                href="#Calendar"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Calendar
-              </a>
-
-              <a
-                href="#Reports"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Reports
-              </a>
+                {loggedInUser.email ? (
+                  <button
+                    className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
+                    onClick={() => setLoggedInUser({})}
+                  >
+                    {" "}
+                    Logout
+                  </button>
+                ) : (
+                  <Link
+                    to="/login"
+                    className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
+                  >
+                    Login
+                  </Link>
+                )}
             </div>
           </div>
         )}
