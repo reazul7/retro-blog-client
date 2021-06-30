@@ -4,10 +4,11 @@ import { useForm } from "react-hook-form";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { UserContext } from "../../App";
+import { useHistory } from "react-router-dom";
 
 const AddBlog = () => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-
+  const history = useHistory();
   const {
     register,
     handleSubmit,
@@ -150,6 +151,14 @@ const AddBlog = () => {
               </button>
             </div>
           </form>
+          <div className="text-center">
+            <button
+              onClick={() => history.goBack()}
+              class="border text-center border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline"
+            >
+              Back
+            </button>
+          </div>
         </div>
       </div>
     </div>

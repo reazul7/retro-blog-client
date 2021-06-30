@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
-import {UserContext} from '../../App';
+import { UserContext } from "../../App";
 
 function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,14 +9,20 @@ function NavBar() {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    fetch("https://desolate-savannah-78335.herokuapp.com/isAdmin", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ email: loggedInUser.email }),
-    })
-      .then((res) => res.json())
-      .then((res) => setIsAdmin(res));
-  }, []);
+    // fetch("https://desolate-savannah-78335.herokuapp.com/isAdmin", {
+    //   method: "POST",
+    //   headers: { "content-type": "application/json" },
+    //   body: JSON.stringify({ email: loggedInUser.email }),
+    // })
+    //   .then((res) => res.json())
+    //   .then((res) => setIsAdmin(res));
+
+    if (loggedInUser.rule === "admin") {
+      setIsAdmin(true);
+    } else {
+      setIsAdmin(false);
+    }
+  }, [loggedInUser.email, loggedInUser.rule]);
   // console.log(isAdmin)
 
   return (
@@ -33,12 +39,12 @@ function NavBar() {
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
-                <a
-                  href="#Dashboard"
+                <Link
+                  to="/dashboard"
                   className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Dashboard
-                </a>
+                </Link>
 
                 <a
                   href="#Team"
@@ -53,27 +59,38 @@ function NavBar() {
                   Review
                 </a>
                 {isAdmin && (
-                  <Link to="/addBlog">
+                  <>
+                    <Link to="/addBlog">
+                      {" "}
+                      <button className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                        Add Blog
+                      </button>{" "}
+                    </Link>
+                    <Link to="/addAdmin">
+                      {" "}
+                      <button className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                        Add Admin
+                      </button>{" "}
+                    </Link>
+                  </>
+                )}
+
+                {loggedInUser.email ? (
+                  <button
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    onClick={() => setLoggedInUser({})}
+                  >
                     {" "}
-                    <a
-                      href="#Projects"
-                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                    >
-                      Add Blog
-                    </a>{" "}
+                    Logout
+                  </button>
+                ) : (
+                  <Link
+                    to="/login"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    Login
                   </Link>
                 )}
-                <a
-                  href="##"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  {loggedInUser.email ? "" : <Link to="/login">Login</Link>}
-                  {loggedInUser.email ? (
-                    <Link onClick={() => setLoggedInUser({})}> Logout</Link>
-                  ) : (
-                    <p></p>
-                  )}
-                </a>
               </div>
             </div>
           </div>

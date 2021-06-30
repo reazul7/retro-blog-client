@@ -1,34 +1,19 @@
-import React from "react";
-import { faCalendar, faFileAlt } from "@fortawesome/free-regular-svg-icons";
+import React, { useContext } from "react";
 import {
   faAddressBook,
   faCog,
-  faGripHorizontal,
   faHome,
   faSignOutAlt,
   faUserPlus,
-  faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import "./Sidebar.css";
 import { faAccessibleIcon } from "@fortawesome/free-brands-svg-icons";
-
+import { UserContext } from "../../../App";
 
 const Sidebar = () => {
-//   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-//   const [isAdmin, setIsAdmin] = useState(false);
-
-//   useEffect(() => {
-//     fetch("https://desolate-badlands-10830.herokuapp.com/adminList")
-//       .then((res) => res.json())
-//       .then((data) => {
-//         const checkAdmin = data.find(
-//           (checkingPerson) => checkingPerson.email === loggedInUser.email
-//         );
-//         setIsAdmin(checkAdmin);
-//       });
-//   }, []);
+  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
   return (
     <div
@@ -38,29 +23,50 @@ const Sidebar = () => {
       <ul className="list-unstyled">
         <li>
           <Link className="text-brand text-decoration-none" to="/">
-          <img src="http://themesitem.com/demos/html/jobortunity/jobortunity/images/home-page-logo.png" alt="" />
+            <img
+              src="http://themesitem.com/demos/html/jobortunity/jobortunity/images/home-page-logo.png"
+              alt=""
+            />
           </Link>
         </li>
         <li>
-          <Link to="/home" className="text-brand text-decoration-none text-white">
+          <Link
+            to="/home"
+            className="text-brand text-decoration-none text-white"
+          >
             <FontAwesomeIcon icon={faHome} /> <span>Home</span>
           </Link>
         </li>
         <li>
-          <Link to="/bookingList" className="text-brand text-decoration-none text-white">
-            <FontAwesomeIcon icon={faAccessibleIcon} />{" "}
-            <span>Job List</span>
+          <Link
+            to="/bookingList"
+            className="text-brand text-decoration-none text-white"
+          >
+            <FontAwesomeIcon icon={faAccessibleIcon} /> <span>Job List</span>
           </Link>
         </li>
-        <li>
-          <Link  to="/add_post" className="text-brand text-decoration-none text-white">
-            <FontAwesomeIcon icon={faAddressBook} /> <span>Add Post</span>
-          </Link>
-        </li>
+        {loggedInUser.rule === "admin" && (
+          <>
+            <li>
+              <Link
+                to="/addBlog"
+                className="text-brand text-decoration-none text-white"
+              >
+                <FontAwesomeIcon icon={faAddressBook} /> <span>Add Post</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/addAdmin"
+                className="text-brand text-decoration-none text-white"
+              >
+                <FontAwesomeIcon icon={faUserPlus} /> <span>Add Admin</span>
+              </Link>
+            </li>
+          </>
+        )}
 
-          <div>
-
-          </div>
+        <div></div>
 
         <li>
           <Link className="text-brand text-decoration-none text-white">
@@ -68,16 +74,14 @@ const Sidebar = () => {
           </Link>
         </li>
         <div class="logout">
-        <Link to="/" className="text-brand text-decoration-none text-white">
-          <FontAwesomeIcon icon={faSignOutAlt} /> <span>Logout</span>
-        </Link>
-      </div>
+          <button
+            onClick={() => setLoggedInUser({})}
+            className="text-brand text-decoration-none text-white"
+          >
+            <FontAwesomeIcon icon={faSignOutAlt} /> <span>Logout</span>
+          </button>
+        </div>
       </ul>
-      {/* <div class="logout">
-        <Link to="/" className="text-brand text-decoration-none text-white">
-          <FontAwesomeIcon icon={faSignOutAlt} /> <span>Logout</span>
-        </Link>
-      </div> */}
     </div>
   );
 };

@@ -1,9 +1,9 @@
 import "./App.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import AddBlog from "./components/Admin/AddBlog";
 import Login from "./components/Shared/Login/Login";
-import { createContext, useEffect } from "react";
+import { createContext } from "react";
 import { useState } from "react";
 import AddAdmin from "./components/Admin/AddAdmin";
 import Sidebar from "./components/Shared/Sidebar/Sidebar";
@@ -24,20 +24,18 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
+          <Route exact path="/home">
+            <Home />
+          </Route>
           <Route path="/login">
             <Login />
           </Route>
-          <PrivateRoute path="/addBlog">
-                <AddBlog />
-              </PrivateRoute>
-              <Route path="/addAdmin">
-                <AddAdmin />
-              </Route>
-              <Route path="/dashboard">
-                <Sidebar />
-              </Route>
 
-          {/* {loggedInUser.rule === "admin" && (
+          <PrivateRoute path="/dashboard">
+            <Sidebar />
+          </PrivateRoute>
+
+          {loggedInUser.rule === "admin" && (
             <>
               <PrivateRoute path="/addBlog">
                 <AddBlog />
@@ -45,11 +43,8 @@ function App() {
               <Route path="/addAdmin">
                 <AddAdmin />
               </Route>
-              <Route path="/dashboard">
-                <Sidebar />
-              </Route>
             </>
-          )} */}
+          )}
 
           <Route path="/blogDetails/:id">
             <BlogDetails />

@@ -37,12 +37,12 @@ function Login() {
       isFieldValid = /\S+@\S+\.\S+/.test(event.target.value);
     }
     if (event.target.name === "password") {
-      isFieldValid = /^(?=.*\d)(?=.*[a-z])[0-9a-zA-Z]{6,}$/.test(
+      isFieldValid = /.{6,}/.test(
         event.target.value
       );
     }
     if (event.target.name === "confirm_password") {
-      isFieldValid = /^(?=.*\d)(?=.*[a-z])[0-9a-zA-Z]{6,}$/.test(
+      isFieldValid = /.{6,}/.test(
         event.target.value
       );
     }
@@ -68,7 +68,7 @@ function Login() {
           updateUserName(user.name);
 
           setLoggedInUser(newUserInfo);
-          history.replace(from);
+          history.push('/login');
         })
         .catch((error) => {
           const errorMessage = error.message;
@@ -80,21 +80,6 @@ function Login() {
         });
     }
 
-    // const isAdmin = (email) => {
-    //   return fetch("https://desolate-savannah-78335.herokuapp.com/isAdmin", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ email }),
-    //   })
-    //     .then((res) => res.json())
-    //     .then((data) => data)
-    //     .catch((err) => {
-    //       console.log("check admin fetch url error", err);
-    //     });
-    // };
-
     if (!newUser && user.email && user.password) {
       firebase
         .auth()
@@ -103,13 +88,19 @@ function Login() {
           // Signed in
           const errorMessage = "";
           const newUserInfo = { ...user };
+
           newUserInfo.error = errorMessage;
           newUserInfo.success = true;
-          console.log(newUserInfo);
-          setUser(newUserInfo);
-          console.log("sign in user info ", res.user);
-          setLoggedInUser(newUserInfo);
-          history.replace(from);
+
+          isAdmin(user.email).then((result) => {
+            newUserInfo.rule = "user";
+            if (result) newUserInfo.rule = "admin";
+            // console.log(newUserInfo);
+            setUser(newUserInfo);
+            // console.log("sign in user info ", res.user);
+            setLoggedInUser(newUserInfo);
+            history.replace(from);
+          });
         })
         .catch((error) => {
           const errorMessage = error.message;
@@ -147,25 +138,42 @@ function Login() {
       .signInWithPopup(googleProvider)
       .then((res) => {
         // console.log(res);
-        console.log(res[0]);
+        // console.log(res[0]);
         const { displayName, email, photoURL } = res.user;
         // console.log(displayName, email, photoURL);
-
-        const signedInUser = {
-          isSignedIn: true,
-          displayName: displayName,
-          email: email,
-          photoURL: photoURL,
-        };
-        setUser(signedInUser);
-        setLoggedInUser(signedInUser);
-        history.replace(from);
+        isAdmin(email).then((result) => {
+          let rule = "user";
+          if (result) rule = "admin";
+          const signedInUser = {
+            isSignedIn: true,
+            displayName: displayName,
+            email: email,
+            photoURL: photoURL,
+            rule,
+          };
+          setUser(signedInUser);
+          setLoggedInUser(signedInUser);
+          history.replace(from);
+        });
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
+  const isAdmin = async (email) => {
+    const response = await fetch(
+      "https://desolate-savannah-78335.herokuapp.com/isAdmin",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      }
+    );
+    return await response.json();
+  };
   // console.log(user);
 
   return (
