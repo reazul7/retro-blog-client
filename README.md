@@ -3,7 +3,7 @@
   <a href="https://retro-blog-8ac85.web.app/" target="_blank">Live Site</a>
 </h2>
 <div align="center">
-  <img src="./src/images/com-service-view.png" alt="Demo"/>
+  <img src="https://raw.githubusercontent.com/reazul7/retro-blog-client/master/src/images/responsive.png" alt="Demo"/>
 </div>
 
 ## Hi there 👋, 
