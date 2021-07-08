@@ -63,7 +63,7 @@ const AddBlog = () => {
   const handleImageUpload = (event) => {
     console.log(event.target.files[0]);
     const imageData = new FormData();
-    imageData.set("key", "d371491237d968517d992b8f6982be6a");
+    imageData.set("key", "e24954274f164fac6ac441f00aad00ab");
     imageData.append("image", event.target.files[0]);
 
     axios
