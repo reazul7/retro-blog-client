@@ -9,6 +9,7 @@ import AddAdmin from "./components/Admin/AddAdmin";
 import Sidebar from "./components/Shared/Sidebar/Sidebar";
 import PrivateRoute from "./components/Shared/Login/PrivateRoute";
 import BlogDetails from "./components/Home/BlogDetails";
+import ManageBlog from "./components/Admin/ManageBlog";
 
 export const UserContext = createContext();
 
@@ -31,9 +32,12 @@ function App() {
             <Login />
           </Route>
 
-          <PrivateRoute path="/dashboard">
+          {/* <PrivateRoute path="/dashboard">
             <Sidebar />
-          </PrivateRoute>
+          </PrivateRoute> */}
+          <Route path="/manageBlog">
+                <ManageBlog />
+              </Route>
 
           {loggedInUser.rule === "admin" && (
             <>
@@ -43,6 +47,7 @@ function App() {
               <Route path="/addAdmin">
                 <AddAdmin />
               </Route>
+              
             </>
           )}
 
