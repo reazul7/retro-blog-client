@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import NavBar from '../Home/NavBar';
 import './MonageBlog.css';
 
 const ManageBlog = () => {
@@ -31,6 +32,7 @@ const ManageBlog = () => {
     }
     return (
         <div>
+            <NavBar/>
             <body class="flex items-center justify-center">
                 <div class="container">
                     <table class="w-full flex flex-row flex-no-wrap sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5">

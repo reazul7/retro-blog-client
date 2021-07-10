@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
+import NavBar from "../Home/NavBar";
 
 function AddAdmin() {
   const {
@@ -25,6 +26,7 @@ function AddAdmin() {
   };
   return (
     <div>
+      <NavBar/>
       <h1 className="text-center pt-20 pb-12 text-2xl font-bold text-gray-500">
         Want to make a user an admin by email?
       </h1>

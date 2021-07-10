@@ -5,6 +5,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { UserContext } from "../../App";
 import { useHistory } from "react-router-dom";
+import NavBar from "../Home/NavBar";
 
 const AddBlog = () => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
@@ -78,6 +79,7 @@ const AddBlog = () => {
   };
   return (
     <div>
+      <NavBar/>
       <div>
         <div class="container m-5">
           <form onSubmit={handleSubmit(onSubmit)}>
