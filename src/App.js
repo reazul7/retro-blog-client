@@ -10,6 +10,7 @@ import Sidebar from "./components/Shared/Sidebar/Sidebar";
 import PrivateRoute from "./components/Shared/Login/PrivateRoute";
 import BlogDetails from "./components/Home/BlogDetails";
 import ManageBlog from "./components/Admin/ManageBlog";
+import EditBlog from "./components/Admin/EditBlog";
 
 export const UserContext = createContext();
 
@@ -37,6 +38,9 @@ function App() {
           </PrivateRoute> */}
           <Route path="/manageBlog">
                 <ManageBlog />
+              </Route>
+          <Route path="/editBlog/:id">
+                <EditBlog />
               </Route>
 
           {loggedInUser.rule === "admin" && (

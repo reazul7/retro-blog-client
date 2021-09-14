@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import NavBar from '../Home/NavBar';
 import './MonageBlog.css';
 
@@ -30,6 +31,8 @@ const ManageBlog = () => {
         })
         .catch((err) => setDeleteBlog(false))
     }
+
+    
     return (
         <div>
             <NavBar/>
@@ -53,7 +56,7 @@ const ManageBlog = () => {
                                     <td class="border-grey-light border hover:bg-gray-100 p-3 truncate">{item.Author}</td>
                                     <td class="border-grey-light border hover:bg-gray-100 p-3 truncate">{item.email}</td>
                                     <td class="border-grey-light border hover:bg-gray-100 p-3 truncate">{item.date}</td>
-                                    <td class="border-grey-light border hover:bg-gray-100 p-3 truncate"><button type="button" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Edit</button><button onClick={() => handleBlogDelete(item._id)}  type="button" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Delete</button></td>
+                                    <td class="border-grey-light border hover:bg-gray-100 p-3 truncate"><Link to={`/editBlog/${item._id}`}  type="button" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Edit</Link><button onClick={() => handleBlogDelete(item._id)}  type="button" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Delete</button></td>
                             </tr>
                                 ))
                             }
