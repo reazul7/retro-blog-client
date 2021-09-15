@@ -13,3 +13,9 @@ export const selectedBlog = (blog) => {
         payload: blog,
     }
 }
+
+export const removeSelectedBlog = () => {
+    return {
+        type: ActionTypes.REMOVE_SELECTED_BLOG
+    }
+}

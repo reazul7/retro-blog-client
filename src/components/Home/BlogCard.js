@@ -29,11 +29,7 @@ const BlogCard = () => {
               </p>
               </Link>
 
-              <Link to={`/blogDetails/${_id}`}>
-              <a
-                href="#"
-                class="flex text-gray-700"
-              >
+              <Link to={`/blogDetails/${_id}`} class="flex text-gray-700">
                 <svg
                   fill="none"
                   viewBox="0 0 24 24"
@@ -47,7 +43,6 @@ const BlogCard = () => {
                     d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
                   />
                 </svg>
-              </a>
               </Link>
             </div>
             <div class="text-md tracking-tighter text-gray-800 flex flex-col my-auto items-center">

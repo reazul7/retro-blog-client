@@ -7,7 +7,7 @@ import { setBlogs } from "../../redux/actions/blogActions";
 const Blog = () => {
   const blogs = useSelector((state) => state);
   const dispatch = useDispatch();
-  
+
   const fetchBlogs = async () => {
     const response = await axios
       .get("https://desolate-savannah-78335.herokuapp.com/blogs")
@@ -36,9 +36,7 @@ const Blog = () => {
       </div>
       <div></div>
       <div class="grid md:grid-cols-3 gap-8 m-5 max-w-5xl m-auto">
-        <BlogCard/>
-        {/* {blogs.length > 0 &&
-          blogs.map((blog) => <BlogCard blog={blog}></BlogCard>)} */}
+        <BlogCard />
       </div>
     </main>
   );

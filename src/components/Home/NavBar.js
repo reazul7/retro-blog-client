@@ -31,20 +31,22 @@ function NavBar() {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <a href="https://retro-blog-8ac85.web.app/"><img
-                className="h-8 w-8"
-                src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                alt="Workflow"
-              /></a>
+              <Link to="/">
+                <img
+                  className="h-8 w-8"
+                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                  alt="Workflow"
+                />
+              </Link>
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
-                {/* <Link
-                  to="/dashboard"
-                  className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Dashboard
-                </Link> */}
+                <Link to="/">
+                  {" "}
+                  <button className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                    Home
+                  </button>{" "}
+                </Link>
                 {isAdmin && (
                   <>
                     <Link to="/addBlog">
@@ -146,51 +148,52 @@ function NavBar() {
         {(ref) => (
           <div className="md:hidden" id="mobile-menu">
             <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              {/* <Link
-                to="/dashboard"
-                className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Dashboard
-              </Link> */}
+            <Link to="/">
+                  {" "}
+                  <button className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">
+                    Home
+                  </button>{" "}
+                </Link>
               {isAdmin && (
-                  <>
-                    <Link to="/addBlog">
-                      {" "}
-                      <button className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">
-                        Add Blog
-                      </button>{" "}
-                    </Link>
-                    <Link to="/manageBlog">
-                      {" "}
-                      <button className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">
-                        Manage Blog
-                      </button>{" "}
-                    </Link>
-                    <Link to="/addAdmin">
-                      {" "}
-                      <button className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">
-                        Add Admin
-                      </button>{" "}
-                    </Link>
-                  </>
-                )}
-
-                {loggedInUser.email ? (
-                  <button
-                    className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
-                    onClick={() => setLoggedInUser({})}
-                  >
+                <>
+                  <Link to="/addBlog">
                     {" "}
-                    Logout
-                  </button>
-                ) : (
-                  <Link
-                    to="/login"
-                    className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
-                  >
-                    Login
+                    <button className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">
+                      Add Blog
+                    </button>{" "}
                   </Link>
-                )}
+                  <Link to="/manageBlog">
+                    {" "}
+                    <button className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">
+                      Manage Blog
+                    </button>{" "}
+                  </Link>
+                  <Link to="/addAdmin">
+                    {" "}
+                    <button className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">
+                      Add Admin
+                    </button>{" "}
+                  </Link>
+                </>
+              )}
+
+              {loggedInUser.email ? (
+                <a
+                  href="/"
+                  className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
+                  onClick={() => setLoggedInUser({})}
+                >
+                  {" "}
+                  Logout
+                </a>
+              ) : (
+                <Link
+                  to="/login"
+                  className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
+                >
+                  Login
+                </Link>
+              )}
             </div>
           </div>
         )}
