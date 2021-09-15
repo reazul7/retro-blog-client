@@ -1,41 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
 import { useParams } from "react-router-dom";
-import ReactHtmlParser from "react-html-parser";
+import { useDispatch, useSelector } from "react-redux";
+import { selectedBlog } from "../.././redux/actions/blogActions";
 
 const BlogDetails = () => {
+  const blog = useSelector((state) => state.blog);
   const { id } = useParams();
-  // console.log(id);
-  const [blogDetails, setBlogDetails] = useState([]);
-  useEffect(() => {
-    fetch(`https://desolate-savannah-78335.herokuapp.com/blogDetails/${id}`)
-      .then((res) => res.json())
-      .then((data) => setBlogDetails(data));
-  }, []);
+  const dispatch = useDispatch();
+// dispatch(selectedBlog(response.data));
+  console.log("blog _Id", id);
+  console.log({blog})
 
-  const { _id, title, Author, email, value, imageURL, date } = blogDetails;
+  const fetchBlogDetails = () => {
+    const response = axios
+      .get(`https://desolate-savannah-78335.herokuapp.com/blogDetails/${id}`)
+      .catch((err) => {
+        console.log({ err });
+      });
+    console.log("blogDetails", response.data)
+  };
+
+  useEffect(() => {
+    if (id && id !== "") fetchBlogDetails();
+  }, [id]);
 
   return (
-    <div class="max-w-screen-lg mx-auto">
-      <div class="mt-10">
-        <div class="mb-4 md:mb-0 w-full mx-auto relative">
-          <div class="px-4 lg:px-0">
-            <h2 class="text-4xl font-semiBold text-gray-800 leading-tight flex flex-col my-auto items-center mb-2">
-              {title}
-            </h2>
-          </div>
-          <div class="text-md tracking-tighter text-gray-800 flex flex-col my-auto items-center mb-4">
-            Author: {Author}
-            <span class="text-gray-600 ">Published: {date}</span>
-          </div>
-          <img src={imageURL} class="object-contain h-80 w-full" />
-        </div>
-
-        <div class="flex flex-col lg:flex-row lg:space-x-12">
-          <div class="px-4 lg:px-0 mt-8 text-gray-700 text-lg w-full text-justify">
-            {ReactHtmlParser(value)}
-          </div>
-        </div>
-      </div>
+    <div>
+      <h1>BlogDetails</h1>
     </div>
   );
 };

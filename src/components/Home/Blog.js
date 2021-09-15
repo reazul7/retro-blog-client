@@ -1,14 +1,27 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import BlogCard from "./BlogCard";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { setBlogs } from "../../redux/actions/blogActions";
 
-function Blog() {
-  const [blogs, setBlogs] = useState([]);
+const Blog = () => {
+  const blogs = useSelector((state) => state);
+  const dispatch = useDispatch();
+  
+  const fetchBlogs = async () => {
+    const response = await axios
+      .get("https://desolate-savannah-78335.herokuapp.com/blogs")
+      .catch((err) => {
+        console.log({ err });
+      });
+    dispatch(setBlogs(response.data));
+  };
+
   useEffect(() => {
-    fetch("https://desolate-savannah-78335.herokuapp.com/blogs")
-      .then((res) => res.json())
-      .then((data) => setBlogs(data));
-  }, [setBlogs]);
+    fetchBlogs();
+  }, []);
+
+  // console.log({blogs});
 
   return (
     <main class="px-2">
@@ -23,11 +36,12 @@ function Blog() {
       </div>
       <div></div>
       <div class="grid md:grid-cols-3 gap-8 m-5 max-w-5xl m-auto">
-        {blogs.length > 0 &&
-          blogs.map((blog) => <BlogCard blog={blog}></BlogCard>)}
+        <BlogCard/>
+        {/* {blogs.length > 0 &&
+          blogs.map((blog) => <BlogCard blog={blog}></BlogCard>)} */}
       </div>
     </main>
   );
-}
+};
 
 export default Blog;
